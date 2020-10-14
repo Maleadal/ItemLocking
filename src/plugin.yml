@@ -1,0 +1,10 @@
+name: ItemLocking
+version: 1.0.1
+author: Maleadal
+main: me.maleadal.ItemLocking.Locking
+api-version: 1.14
+commands:
+  lock:
+    description: Locks the item that you are currently holding
+  unlock:
+    description: Unlocks a locked item
