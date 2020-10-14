@@ -23,8 +23,7 @@ public class EventHandler implements Listener {
                     event.setCancelled(true);
                 }
             }
-        }catch(NullPointerException e){
-            System.out.println("No Enchant");
+        }catch(NullPointerException ignored){
         }
 
     }

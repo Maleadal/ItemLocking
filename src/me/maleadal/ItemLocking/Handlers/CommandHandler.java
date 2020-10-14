@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -39,7 +40,7 @@ public class CommandHandler implements CommandExecutor {
             }
         }else if(cmd.getName().equalsIgnoreCase("unlock")){
             ItemStack heldItem = player.getInventory().getItemInMainHand();
-            if(heldItem.containsEnchantment(EnchantHandler.lock)){
+            if(heldItem.getItemMeta().getEnchants().containsKey(Enchantment.getByKey(EnchantHandler.lock.getKey()))){
                 ItemMeta meta = heldItem.getItemMeta();
                 ArrayList<String> lore = new ArrayList<>();
                 meta.removeEnchant(EnchantHandler.lock);
@@ -47,25 +48,8 @@ public class CommandHandler implements CommandExecutor {
                 heldItem.setItemMeta(meta);
                 player.sendMessage("§7Unlocked");
             }
-            else if(args.length !=0){
-                if(args[0].equalsIgnoreCase("all")){
-                    Inventory inv = player.getInventory();
-                    for(int i = 0; i < inv.getSize(); i++){
-                        ItemStack item = inv.getItem(i);
-                        if(item != null && item.containsEnchantment(EnchantHandler.lock)){
-                            ItemMeta meta = item.getItemMeta();
-                            ArrayList<String> lore = new ArrayList<>();
-                            meta.removeEnchant(EnchantHandler.lock);
-                            meta.setLore(lore);
-                            item.setItemMeta(meta);
-                            player.sendMessage("§7Unlocked");
-                        }
-                    }
-                }
-            }
             else{
                 player.sendMessage("§7This item is already unlocked!");
-
             }
         }
 
