@@ -6,7 +6,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -32,12 +31,12 @@ public class CommandHandler implements CommandExecutor {
             else{
                 ItemMeta meta = heldItem.getItemMeta();
                 ArrayList<String> lore = new ArrayList<>();
-                meta.addEnchant(EnchantHandler.lock, 1, true);
+                meta.addEnchant(EnchantHandler.lock, EnchantHandler.lock.getStartLevel(), true);
                 lore.add("§b---§lLOCKED---§b§l");
                 meta.setLore(lore);
                 heldItem.setItemMeta(meta);
                 player.sendMessage("§7Locked");
-            }
+            }   
         }else if(cmd.getName().equalsIgnoreCase("unlock")){
             ItemStack heldItem = player.getInventory().getItemInMainHand();
             if(heldItem.getItemMeta().getEnchants().containsKey(Enchantment.getByKey(EnchantHandler.lock.getKey()))){
@@ -52,7 +51,6 @@ public class CommandHandler implements CommandExecutor {
                 player.sendMessage("§7This item is already unlocked!");
             }
         }
-
         return true;
 
     }

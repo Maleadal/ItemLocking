@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Map;
@@ -31,6 +32,14 @@ public class EventHandler implements Listener {
     public static void onDropEvent(PlayerDropItemEvent event){
         ItemStack itemDropped = event.getItemDrop().getItemStack();
         if(itemDropped.getEnchantments().containsKey(Enchantment.getByKey(EnchantHandler.lock.getKey()))){
+            event.setCancelled(true);
+        }
+    }
+
+    @org.bukkit.event.EventHandler
+    public static void onSwapEvent(PlayerSwapHandItemsEvent event){
+        ItemStack offHand = event.getOffHandItem();
+        if(offHand.getEnchantments().containsKey(Enchantment.getByKey(EnchantHandler.lock.getKey()))){
             event.setCancelled(true);
         }
     }

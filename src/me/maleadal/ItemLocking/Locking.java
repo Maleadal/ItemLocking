@@ -18,6 +18,7 @@ public class Locking extends JavaPlugin {
         EnchantHandler.init();
         getCommand("lock").setExecutor(command);
         getCommand("unlock").setExecutor(command);
+        getCommand("play").setExecutor(command);
         getServer().getPluginManager().registerEvents(event, this);
         getServer().getConsoleSender().sendMessage("§1[ItemLocking]: §2Enabled" + ChatColor.RESET);
     }

@@ -8,3 +8,5 @@ commands:
     description: Locks the item that you are currently holding
   unlock:
     description: Unlocks a locked item
+  play:
+    description: Plays an animation
